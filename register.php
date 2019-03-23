@@ -14,7 +14,15 @@
 	-webkit-background-size: 100% 100%, auto;
 	background-size: 100% 100%, auto;
 }
-
+.row{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    margin-right:-10px;
+    margin-left:-10px
+}
 .dropdown-content a:hover {background-color: #ddd;}
 
 .dropdown:hover .dropdown-content {display: block;}
@@ -26,49 +34,78 @@
 
 <body class="body">
 <center>
-<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%); width: 100%">
-<div><font style="font-size:25px">Register</font> </div>
-<div style="margin-top: 1%;">
+<div style="margin-top: 18%"><font style="font-size:25px;">Register</font> </div>
+<div style="margin-top: 1%; justify-content: center; width: 100%">
 <form id="form1" name="form1" method="post" action="insertMember.php" enctype="multipart/form-data">
-<table width="50%" border="0">
-  <tr>
-    <td width="30%"><div align="right">Username :</div></td>
-    <td width="70%">
-      <input type="text" name="Username" id="Username" style="width:60%" />
-    </form></td>
-  </tr>
-  
-  <tr>
-    <td><div align="right">Password :</div></td>
-    <td>
-      <input type="password" name="Password" id="Password" style="width:60%" />
-    </td>
-  </tr>
-  <tr>
-    <td><div align="right">Re-Password :</div></td>
-    <td>
-      <input type="password" name="re_Password" id="re_Password" style="width:60%" /></td>
-  </tr>
-  <tr>
-    <td><div align="right">ชื่อ-สกุล :</div></td>
-    <td>
-      <input type="text" name="nsname" id="nsname" style="width:60%" /></td>
-  </tr>
-  
-   <tr>
-    <td><div align="right">Email :</div></td>
-    <td>
-      <input type="email" name="Email" id="Email" style="width:60%" /></td>
-  </tr>
-    <td><div align="right">เบอร์โทรศัพท์ :</div></td>
-    <td>
-      <input type="number" name="tel" id="tel" style="width:60%" /></td>
-  </tr>
-</table>
-  <input type="submit" name="submit" id="submit" value="Register" style="margin-top:2%; font-size:20px; height: 30px;"/>
+<div class="row" style="width: 100%; justify-content: center;">
+    <div style="margin-left: 15%; font-size: 18px">
+        <table width="700" border="0">
+            <tr>
+                <td width="30%"><div align="right">Username :</div></td>
+                <td width="70%"><input type="text" name="Username" id="Username" style="width:60%" /></td>
+            </tr>
+
+            <tr>
+                <td><div align="right">Password :</div></td>
+                <td>
+                    <input type="password" name="Password" id="Password" style="width:60%" />
+                </td>
+            </tr>
+            <tr>
+                <td><div align="right">Re-Password :</div></td>
+                <td>
+                    <input type="password" name="re_Password" id="re_Password" style="width:60%" /></td>
+            </tr>
+            <tr>
+                <td><div align="right">ชื่อ-สกุล :</div></td>
+                <td>
+                    <input type="text" name="nsname" id="nsname" style="width:60%" /></td>
+            </tr>
+
+            <tr>
+                <td><div align="right">Email :</div></td>
+                <td>
+                    <input type="email" name="Email" id="Email" style="width:60%" /></td>
+            </tr>
+            <tr>
+                <td><div align="right">เลขบัตรประจำตัวประชาชน :</div></td>
+                <td>
+                    <input type="number" name="IDcard" id="IDcard" style="width:60%" /></td>
+            </tr>
+            <tr>
+            <td><div align="right">เบอร์โทรศัพท์ :</div></td>
+            <td>
+                <input type="number" name="tel" id="tel" style="width:60%" /></td>
+            </tr>
+        </table>
+    </div>
+    <div style="width: 40%; margin-top: -1%; margin-left: -20%">
+        <div>แนบบัตรประชาชน</div>
+        <div>
+            <img id="img" src="https://admission.nu.ac.th/student/citizencard.jpg" width="200" height="120" style="margin: 3% 0px 3% 0px;" >
+        </div>
+        <input type="file" name="ImgIdCard" style="margin-left: 10%" id="ImgIdCard" onchange="onFileSelected(event)" />
+    </div>
+</div>
+  <input type="submit" name="submit" id="submit" value="Register" style="margin-top:2%; font-size:20px; height: 30px;"/> <a href="login.php">login</a>
 </form>
-</div> 
 </div>
 </center>
+<script type="text/javascript">
+    function onFileSelected(event) {
+        let selectedFile = event.target.files[0];
+        let reader = new FileReader();
+
+        let imgtag = document.getElementById("img");
+        imgtag.title = selectedFile.name;
+
+        reader.onload = function(event) {
+            imgtag.src = event.target.result;
+        };
+
+        reader.readAsDataURL(selectedFile);
+    }
+</script>
+
 </body>
 </html>

@@ -36,15 +36,7 @@
   text-decoration: none;
   display: block;
 }
-.row{
-display:-webkit-box;
-display:-ms-flexbox;
-display:flex;
--ms-flex-wrap:wrap;
-flex-wrap:wrap;
-margin-right:-10px;
-margin-left:-10px
-}
+
 
 .dropdown-content a:hover {background-color: #ddd;}
 
@@ -82,14 +74,14 @@ getLocation();
     <!-- Logo text -->
     <font style="font-size: 20px; margin-left:1%;" > Support Accident </font>
     </div>
-   <div style="width:80%; margin-left: 0%; align-items: center; display: flex;">
+   <div style="width:100%; margin-left: 0%; align-items: center; display: flex;">
     <?php 
 	$Username = "";
 
 	if(isset($_GET["Username"])){
 		$Username = $_GET["Username"];
 	}
-	if($Username === ''):header("location:login.php?");?>
+	if($Username === ''):?>
     <a href="home.php" style="margin-left: 4%;font-size:15px"> หน้าหลัก</a>
     <a href="help.php" style="margin-left: 4%;font-size:15px">ขอความช่วยเหลือ</a>
     <a href="massage.php" style="margin-left: 4%;font-size:15px">กระดานรับแจ้งเหตุ</a>
@@ -133,35 +125,38 @@ getLocation();
     <?php endif;?>
 </div>
 </header>
-	
-<div style="position: absolute; top: 84%; left: 35%; transform: translate(-40%, -70%); width: 100%">
+
 <center>
  	
  <form id="form1" name="form1" method="post" action="InsertHelp.php" enctype="multipart/form-data">
-          <div class="tab-content" style="display:block; margin-left: 10%">
+          <div class="tab-content" style="display:block; margin-left: 10%; margin-top: 2%">
             <h1><center>
             ขอความช่วยเหลือ
                 <table width="50%" border="0" style="font-size:18px; margin-top:30px" > 
               </tr>
               <tr>
                 <td height="35" align="right"><b style="margin-right: 10px"> ชื่อนามสกุล</b></td>
-                <td><input type="text" name="namepd" style="height: 20px; width: 200px" /></td>
-                <input type="hidden" name="username" value="<?php echo $Username; ?>" />
+                  <?php if($Username === ''):?>
+                <td><input type="text" name="namepd" style="height: 20px; width: 200px" required /></td>
+                  <?php else:?>
+                  <td><input type="text" name="namepd" style="height: 20px; width: 200px" value="<?php echo $result["nsname"]?>" readonly  /></td>
+                  <?php endif;?>
+                  <input type="hidden" name="username" value="<?php echo $Username; ?>" />
               </tr>
               <tr>
                 <td height="35" align="right"><b style="margin-right: 10px"> เหตุแจ้งข้อความช่วยเหลือ</b></td>
-                <td><input type="text" name="headpd" style="height: 20px; width: 200px" /></td>
+                <td><input type="text" name="headpd" style="height: 20px; width: 200px" required /></td>
               </tr> 
               <tr>
                 <td height="35" align="right"><b style="margin-right: 10px"> อาการบาทเจ็บ </b></td>
                 <td>
-                <textarea name="detailpd" cols="40" rows="6" style="width: 90%; resize:none;"></textarea>
+                <textarea name="detailpd" cols="40" rows="6" style="width: 90%; resize:none;" required></textarea>
                 </td>
               </tr>
               <tr>
               <tr>
                 <td height="35" align="right"><b style="margin-right: 10px"> รายละเอียดที่อยู่ </b></td>
-                <td><textarea name="detailAdd"rows="5" style="width: 90%; resize:none;"></textarea></td>
+                <td><textarea name="detailAdd"rows="5" style="width: 90%; resize:none;" required></textarea></td>
               </tr>
                <tr>
                 <td height="35" align="right"><b style="margin-right: 10px"> สถานที่เกิดเหตุ </b></td>
@@ -174,7 +169,11 @@ getLocation();
               </tr>
                <tr>
                 <td height="35" align="right"><b style="margin-right: 10px"> เบอร์ติดต่อ </b></td>
-                <td><input type="number" name="linepd" style="height: 20px; width: 200px" /></td>
+                   <?php if($Username === ''):?>
+                <td><input type="number" name="linepd" style="height: 20px; width: 200px" required /></td>
+                   <?php else:?>
+                       <td><input type="number" name="linepd" style="height: 20px; width: 200px" value="<?php echo $result["tel"]?>"  readonly /></td>
+                   <?php endif;?>
               </tr>
             </table>
         
@@ -183,11 +182,6 @@ getLocation();
           </form>
   </center>
 
-    
-   
-  
-
 <img src="images/BGDR4.jpg" width="100%" height="300px"/>
-</div>
 </body>
 </html>
