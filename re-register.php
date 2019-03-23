@@ -45,7 +45,15 @@
   text-decoration: none;
   display: block;
 }
-
+.row{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap;
+    margin-right:-10px;
+    margin-left:-10px
+}
 .dropdown-content a:hover {background-color: #ddd;}
 
 .dropdown:hover .dropdown-content {display: block;}
@@ -77,7 +85,7 @@ body {
     <!-- Logo text -->
     <font style="font-size: 20px; margin-left:1%;" > Support Accident </font>
     </div>
-    <div style="width:80%; margin-left: 0%; align-items: center; display: flex;">
+    <div style="width:100%; margin-left: 0%; align-items: center; display: flex;">
     <?php 
 	$Username = "";
 
@@ -132,46 +140,62 @@ body {
 		$result = mysqli_fetch_array($query, MYSQLI_ASSOC)
 ?>
 <center>
-<div style="position: absolute; top: 45.5%; left: 50%; transform: translate(-50%, -55.5%); width: 100%">	
-<h1><center>
+<div style="position: absolute; top: 45.5%; left: 50%; transform: translate(-50%, -55.5%); width: 100%">
+    <h1 style="color: black"><center>
 <form action="updateMember.php" method="post" enctype="multipart/form-data" target="iframe_target">
                         <iframe id="iframe_target" name="iframe_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe>
             แก้ไขข้อมูลส่วนตัว
-                <table width="68%" border="0" style="font-size:18px; margin-top:30px" >
-            
-              <tr>
-                <td height="35" align="right"><b style="margin-right: 10px"> Username :</b></td>
-                <td>
-                <input type="text" name="Username" style="height: 20px; width: 200px" value="<?php echo ($result["Username"]) ?>" />
-                <input type="hidden" name="id" value="<?php echo ($result["ID"]) ?>" />
-                <input type="hidden" name="oldUsername" value="<?php echo ($result["Username"]) ?>" />
-                </td>
-              </tr>
-              <tr>
-                <td height="35" align="right"><b style="margin-right: 10px">Password :</b></td>
-                <td><input type="text" name="Password" style="height: 20px; width: 200px" value="<?php echo ($result["Password"]) ?>" /></td>
-              </tr>
-              <tr>
-                <td height="35" align="right"><b style="margin-right: 10px"> Re-Password :</b></td>
-                <td><input type="text" name="RePassword" style="height: 20px; width: 200px" value="<?php echo ($result["Password"]) ?>" /></td>
-              </tr>
-              <tr>
-                <td height="35" align="right"><b style="margin-right: 10px"> ชื่อ-สกุล :</b></td>
-                <td><input type="text" name="nsname" style="height: 20px; width: 200px" value="<?php echo ($result["nsname"]) ?>" /></td>
-              </tr>
-              <tr>
-                <td height="35" align="right"><b style="margin-right: 10px"> Email :</b></td>
-                <td>
-                <input type="text" name="Email" style="height: 20px; width: 200px" value="<?php echo ($result["Email"]) ?>" />
-                </td>
-              </tr>
-               <tr>
-                <td height="35" align="right"><b style="margin-right: 10px"> เบอร์โทรศัพท์ :</b></td>
-                <td><input type="text" name="tel" style="height: 20px; width: 200px" value="<?php echo ($result["tel"]) ?>"/></td>
-              </tr>
-              
-               <em> 
+    <div class="row" style="width: 100%; justify-content: center;">
+        <div style="margin-left: -15%; font-size: 18px">
+            <table width="700" border="0" style="font-size:18px; margin-top:30px" >
+
+                <tr>
+                    <td height="35" align="right"><b style="margin-right: 10px"> Username :</b></td>
+                    <td>
+                        <input type="text" name="Username" style="height: 20px; width: 200px" value="<?php echo ($result["Username"]) ?>" />
+                        <input type="hidden" name="id" value="<?php echo ($result["ID"]) ?>" />
+                        <input type="hidden" name="oldUsername" value="<?php echo ($result["Username"]) ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><b style="margin-right: 10px">Password :</b></td>
+                    <td><input type="text" name="Password" style="height: 20px; width: 200px" value="<?php echo ($result["Password"]) ?>" /></td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><b style="margin-right: 10px"> Re-Password :</b></td>
+                    <td><input type="text" name="RePassword" style="height: 20px; width: 200px" value="<?php echo ($result["Password"]) ?>" /></td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><b style="margin-right: 10px"> ชื่อ-สกุล :</b></td>
+                    <td><input type="text" name="nsname" style="height: 20px; width: 200px" value="<?php echo ($result["nsname"]) ?>" /></td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><b style="margin-right: 10px"> Email :</b></td>
+                    <td>
+                        <input type="text" name="Email" style="height: 20px; width: 200px" value="<?php echo ($result["Email"]) ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><b style="margin-right: 10px"> เลขบัตรประจำตัวประชาชน :</b></td>
+                    <td><input type="text" name="IDcard" style="height: 20px; width: 200px" value="<?php echo ($result["IDcard"]) ?>"/></td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><b style="margin-right: 10px"> เบอร์โทรศัพท์ :</b></td>
+                    <td><input type="text" name="tel" style="height: 20px; width: 200px" value="<?php echo ($result["tel"]) ?>"/></td>
+                </tr>
+
+                <em>
             </table>
+        </div>
+        <div style="width: 90%; margin-top: 10%; margin-left: -20%; font-size: 16px">
+            <div>แนบบัตรประชาชน / บัตรประจำตัว</div>
+            <div>
+                <img id="img" src="<?php echo ($result["imgIDcard"]) ?>" width="300" height="180" style="margin: 3% 0px 3% 0px;" >
+            </div>
+            <input type="file" name="ImgIdCard" style="margin-left: 10%" id="ImgIdCard" value="<?php echo ($result["imgIDcard"]) ?>" onchange="onFileSelected(event)" />
+            <input type="hidden" name="0ld_ImgIdCard" value="<?php echo $result["imgIDcard"]; ?>">
+        </div>
+    </div>
             <button type="submit" style="height:30px; margin-top:3%; width:80px">ยืนยัน</button>
             <button type="reset" style="height:30px; margin-top:3%; width:80px">ยกเลิก</button>
            </form>
@@ -181,5 +205,20 @@ body {
 </div> 
 </div>
 </center>
+<script type="text/javascript">
+    function onFileSelected(event) {
+        let selectedFile = event.target.files[0];
+        let reader = new FileReader();
+
+        let imgtag = document.getElementById("img");
+        imgtag.title = selectedFile.name;
+
+        reader.onload = function(event) {
+            imgtag.src = event.target.result;
+        };
+
+        reader.readAsDataURL(selectedFile);
+    }
+</script>
 </body>
 </html>
