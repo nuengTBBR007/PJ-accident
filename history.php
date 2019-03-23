@@ -63,7 +63,7 @@ margin-left:-10px
     <!-- Logo text -->
     <font style="font-size: 20px; margin-left:1%;" > Support Accident </font>
     </div>
-    <div style="width:100%; margin-left: 0%; align-items: center; display: flex;">
+    <div style="width:80%; margin-left: 0%; align-items: center; display: flex;">
     <?php 
 	$Username = "";
 
@@ -129,6 +129,7 @@ margin-left:-10px
 ?>
 <div>
 <div style="position: absolute; top: 30%; left: 40%; transform: translate(-40%, -70%); width: 100%">
+<center>
 <center>
 <h1>ประวัติการช่วยเหลือ</h1>
 <form name="search" method="post">

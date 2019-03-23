@@ -63,7 +63,7 @@ margin-left:-10px
     <!-- Logo text -->
     <font style="font-size: 20px; margin-left:1%;" > Support Accident </font>
     </div>
-    <div style="width:100%; margin-left: 0%; align-items: center; display: flex;">
+    <div style="width:80%; margin-left: 0%; align-items: center; display: flex;">
     <?php 
 	$Username = "";
 	$idhelp = $_GET["idhelp"];

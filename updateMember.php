@@ -9,26 +9,13 @@
 	$nsname = $_POST["nsname"];
 	$Email = $_POST["Email"];
     $tel = $_POST["tel"];
-    $IDcard = $_POST["IDcard"];
-    $old_img = $_POST["0ld_ImgIdCard"];
-
-$ImgIDcard ;
-if ($_FILES["ImgIdCard"]["name"] !== ""){
-    $filename = $conn->real_escape_string($_FILES['ImgIdCard']['name']);
-    $filedata= $conn->real_escape_string(base64_encode(file_get_contents($_FILES['ImgIdCard']['tmp_name'])));
-    $filetype = $conn->real_escape_string($_FILES['ImgIdCard']['type']);
-    $ImgIDcard = 'data:'.$filetype.';base64,'.$filedata;
-}else{
-    $ImgIDcard = $old_img;
-}
 
 if(empty($Username) ||
     empty($Password) ||
     empty($RePassword) ||
     empty($nsname) ||
     empty($Email)||
-    empty($tel)||
-    empty($IDcard)) {
+    empty($tel)) {
     $message = "กรุณากรอกข้อมูลให้ครบ";
     echo (
     "<script LANGUAGE='JavaScript'>
@@ -49,9 +36,7 @@ if(empty($Username) ||
                 Password = '$Password',
                 nsname = '$nsname',
                 Email = '$Email',
-                tel = '$tel',
-                IDcard = '$IDcard',
-                imgIDcard='$ImgIDcard'
+                tel = '$tel'
                 
                 WHERE ID = $id ";
 
@@ -86,9 +71,7 @@ if(empty($Username) ||
                 Password = '$Password',
                 nsname = '$nsname',
                 Email = '$Email',
-                tel = '$tel',
-                IDcard = '$IDcard',
-                imgIDcard='$ImgIDcard'
+                tel = '$tel'
                 
                 WHERE ID = $id ";
 

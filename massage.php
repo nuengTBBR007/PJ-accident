@@ -77,7 +77,7 @@ body {
     <!-- Logo text -->
     <font style="font-size: 20px; margin-left:1%;" > Support Accident </font>
     </div>
-    <div style="width:100%; margin-left: 0%; align-items: center; display: flex;">
+    <div style="width:80%; margin-left: 0%; align-items: center; display: flex;">
     <?php 
 	$Username = "";
 
@@ -167,15 +167,12 @@ body {
     <?php if($Username !== '' && $resultuser["status"] == 'staff' && $result["statusstaff"] == 'กำลังให้ความช่วยเหลือ'):?>
     <td align="center"><a href="detel.php?Username=<?php echo $Username; ?>&idhelp=<?php echo ($result["id"]); ?>" >ดูข้อมูล </a></td>
     <td align="center">มีผู้รับเหตูไปแล้ว</td>
-    <?php elseif($Username !== '' && $resultuser["status"] == 'staff' && $result["statusstaff"] == 'ยังไม่ได้รับการช่วยเหลือ'):?>
+    <?php elseif($Username !== '' && $resultuser["status"] == 'staff' && $result["statusstaff"] !== 'กำลังให้ความช่วยเหลือ'):?>
     <td align="center"><a href="detel.php?Username=<?php echo $Username; ?>&idhelp=<?php echo ($result["id"]); ?>" >ดูข้อมูล </a></td>
     <td align="center"><input type="submit" name="button" id="button" value="รับเหตุ" style="font-size:18px"
     onclick="JavaScript:if(confirm('ต้องการรับเหตูนี้?')==true)
                 {window.location='updatemassage.php?Username=<?php echo $Username; ?>&id=<?php echo ($result["id"]) ?>';}"/></td>
-    <?php elseif($Username !== '' && $resultuser["status"] == 'staff' && $result["statusstaff"] == 'ช่วยเหลือเสร็จสิ้น'):?>
-        <td align="center"><a href="detel.php?Username=<?php echo $Username; ?>&idhelp=<?php echo ($result["id"]); ?>" >ดูข้อมูล </a></td>
-        <td align="center">ช่วยเหลือเสร็จสิ้นแล้ว</td>
-    <?php elseif($Username !== '' && $resultuser["status"] == 'user') :?>
+     <?php elseif($Username !== '' && $resultuser["status"] == 'user') :?>
      <td align="center"><a href="detel.php?Username=<?php echo $Username; ?>&idhelp=<?php echo ($result["id"]); ?>" >ดูข้อมูล </a></td>
      <?php elseif($Username == '') :?>
      <?php endif;?>
